@@ -1,0 +1,14 @@
+[
+      {
+          "type":"readers.las",
+          "filename":"sample.las"
+      },
+      {
+          "type":"filters.radialdensity",
+          "radius":5
+      },
+      {
+          "type":"writers.text",
+          "filename":"radial_density.txt"
+      }
+  ]
