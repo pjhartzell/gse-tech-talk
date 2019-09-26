@@ -2,7 +2,7 @@
 * Create a new environment: `conda create -n pdal Python=3`
 * Install PDAL's Python extension: `conda install -c conda-forge python-pdal`
   * Note that this also installs PDAL as a standalone application
-  * Test if the PDAL application installed successfully by typing `pdal` at the prompt.
+  * Test if the PDAL standalone application installed successfully by typing `pdal` at the prompt.
 * Look [here](https://pdal.io/apps/index.html) for more information.
 
 ## 2. Using the PDAL command line application
@@ -13,7 +13,8 @@
   * `pdal translate sample.las sample.txt`
 * Example: Take advantage of non-command line PDAL functionality with a **pipeline**
   * A **pipeline** is just a JSON file that *sequentially* specifies an input file, data modification, and an output file.
-  * Here is an example that reads in a LAS file, computes the density of points within a radius for each point, and saves the resulting point cloud, including the new density measure, to a CSV format text file:
+  * By using a pipeline you can access more PDAL "filters" than are available from the command line application
+  * Here is an example of a pipeline that reads in a LAS file, computes the density of points within a radius for each point, and saves the resulting point cloud (including the new density measure) to a CSV format text file:
   ```json
   [
       {
@@ -30,7 +31,7 @@
       }
   ]
   ```
-    * Run `pdal pipeline pipeline_file.json` to execute the example pipeline.
+    * Run `pdal pipeline radial_density_pipeline.json` to execute the example pipeline.
     * Check out the [PDAL website](https://pdal.io/index.html) for more information and examples.
   
 ## 3. Using PDAL in a Python script or function
@@ -91,7 +92,7 @@ for i in range(100):
     print('X = {}, Y = {}, Z = {}, I = {}'.format(X[i], Y[i], Z[i], I[i]))
 ```
 * We can also use a PDAL pipeline in Python to save points to a file. Below is an extension of the example above:
-```
+```Python
 import pdal
 import numpy as np
 

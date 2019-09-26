@@ -3,7 +3,7 @@
 Just a 'box' (a directory, really) where you can safely install Python flavors of choice (2.X, 3.X) and packages. 
 
 ### Why would I want to use environments?
-* You can install and use Python 2.X and Python 3.X without conflicts.
+* You can install and use as many flavors of Python 2.X and Python 3.X on the same machine without conflicts.
 * Avoid conflicts where you need different versions of a package (e.g., numpy) for different projects you are working on.
 * Easily share your environment (Python version and all dependencies) with other people so they can run your awesome scripts without:
   * breaking their current Python setup, or 
@@ -35,15 +35,23 @@ Just a 'box' (a directory, really) where you can safely install Python flavors o
 * The default "base" environment
   * Note that there is a default environment named "base"
   * You can see that the base environment is active because `(base)` precedes the directory at the prompt
-  * Do yourself a favor and don't install anything in your base environment
-* Create a new environment
+  * Don't install stuff in your base environment
+* Create a new environment with the latest version of Python
   * `conda create --name my_environment Python=3`
   * `conda create -n my_environment Python=3`
 * Activate an environment
   * `conda activate my_environment`
-  * Note how `(my_environment)` now precedes the directory at the prompt
+  * Note how `(my_environment)` now precedes the directory name at the prompt:
+```
+C:\dev\python\conda-pdal-tech-talk>conda activate
+
+(base) C:\dev\python\conda-pdal-tech-talk>conda activate pdal-tech-talk
+
+(pdal-tech-talk) C:\dev\python\conda-pdal-tech-talk>
+```
+
 * List all your environments (in case you forget their names)
-  * `conda env list`
+  * `conda env list`, or
   * `conda info --env`
 * Delete an environment
   * `conda remove -n my_environment --all`
@@ -54,9 +62,11 @@ Just a 'box' (a directory, really) where you can safely install Python flavors o
   
 
 ## 4. Installing packages into your environment
-* Remember not to install packages in your (base) environment. I find it easiest to activate the environment in which I want to modify packages.
-* Install a package into the active environment: `conda install numpy`
-  * To install a package into an environment different than the current active environment you need to specify the environment name: `conda install -n different_environment numpy`
+* Remember not to install packages in your (base) environment. 
+* I find it easiest to first activate the environment in which I want to modify packages, and then install a package:
+  * `conda activate my_environment`
+  * `conda install numpy` (numpy used as the example package)
+* To install a package into an environment different than the current active environment you need to specify the environment name: `conda install -n different_environment numpy`
 * Install a package from a non-default "channel": `conda install -c conda-forge pdal-python`
 * List installed packages: `conda list`
 * Delete a package: `conda remove numpy`
@@ -68,9 +78,9 @@ Just a 'box' (a directory, really) where you can safely install Python flavors o
   * Create a file that specs your environment: `conda env export > awesome_environment.yml`
   * Send the "awesome_environment.yml" file to your colleague
 * Colleague:
-  * Navigate to the directory where they placed the "awesome_environment.yml" file and run `conda env create -f awesome_environment.yml`
+  * Navigate to the directory where I saved the "awesome_environment.yml" file and run `conda env create -f awesome_environment.yml`
   * Activate the new environment with `conda activate awesome_environment`
-  * Colleague can now run your awesome script without worrying about breaking their Python or package installations due to different versions
+  * I can now run your awesome script without worrying about breaking my Python or package installations due to different versions
 
 
 ## Notes from a MATLAB user on using a Command Prompt for Python
