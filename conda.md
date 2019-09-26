@@ -37,7 +37,7 @@ Just a 'box' (a directory, really) where you can safely install Python flavors o
   * You can see that the base environment is active because `(base)` precedes the directory at the prompt
   * Don't install stuff in your base environment
 * Create a new environment with the latest version of Python
-  * `conda create --name my_environment Python=3`
+  * `conda create --name my_environment Python=3`, or
   * `conda create -n my_environment Python=3`
 * Activate an environment
   * `conda activate my_environment`
